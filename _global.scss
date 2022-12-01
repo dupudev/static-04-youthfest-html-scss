@@ -1,0 +1,79 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: $fontSize;
+  @include responsive(small) {
+    font-size: 20px;
+  }
+}
+
+body {
+  font-family: $fontFamily;
+
+  color: $text;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 0.5em;
+}
+
+h3 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 0.2em;
+}
+
+h4 {
+  font-size: 1.8rem;
+  font-weight: 800;
+  margin-bottom: 0.75em;
+}
+
+p {
+  margin-bottom: 1em;
+}
+
+img {
+  display: block;
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+.container {
+  width: min(1344px, 90%);
+  // width: 90%;
+  // max-width: 1344px;
+  margin: 0 auto;
+}
+
+.py {
+  padding: 75px 0;
+}
+
+.p-top {
+  padding-top: 75px;
+}
+
+@include responsive(small) {
+  hr {
+    max-width: 250px;
+  }
+}

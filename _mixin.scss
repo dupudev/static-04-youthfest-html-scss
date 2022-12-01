@@ -1,0 +1,37 @@
+@mixin flex(
+  $align-items: stretch,
+  $justify-content: flex-start,
+  $flex-direction: row,
+  $flex-wrap: wrap
+) {
+  display: flex;
+  align-items: $align-items;
+  justify-content: $justify-content;
+  flex-direction: $flex-direction;
+  flex-wrap: $flex-wrap;
+}
+
+@mixin hr($background-color, $width: 330px) {
+  background-color: $background-color;
+  border: none;
+  height: 5px;
+  width: $width;
+}
+
+@mixin responsive($device) {
+  @if $device == large {
+    @media (min-width: 768px) and (max-width: 992px) {
+      @content;
+    }
+  }
+  @if $device == medium {
+    @media (min-width: 576px) and (max-width: 767px) {
+      @content;
+    }
+  }
+  @if $device == small {
+    @media (max-width: 575px) {
+      @content;
+    }
+  }
+}

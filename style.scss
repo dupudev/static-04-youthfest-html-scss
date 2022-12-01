@@ -1,0 +1,772 @@
+@import 'vars';
+@import 'mixin';
+@import 'global';
+
+//?-------------------------------------
+//? Home
+//?-------------------------------------
+
+/// Navbar
+
+nav {
+  position: relative;
+  z-index: 2;
+  @include flex(center, space-between);
+  padding: 50px 0;
+  .logo {
+    width: 250px;
+  }
+  .navmenu {
+    // background-color: $white;
+    font-size: 1.1rem;
+    &.active {
+      bottom: 40px;
+      transition: $transition;
+    }
+    li {
+      line-height: 1.3;
+      a {
+        color: $lightGray;
+        font-weight: 600;
+        letter-spacing: 1px;
+        // transition: $transition;
+        &.active-page {
+          color: $orange;
+        }
+        &:hover {
+          color: $orange;
+        }
+      }
+    }
+  }
+  .hamburger {
+    display: none;
+    align-self: flex-start;
+    cursor: pointer;
+    &:hover {
+      .line {
+        background-color: $orange;
+      }
+    }
+    &.active {
+      .line:nth-child(1),
+      .line:nth-child(4) {
+        width: 0;
+      }
+      .line:nth-child(2) {
+        transform: rotate(45deg);
+      }
+      .line:nth-child(3) {
+        transform: rotate(-45deg);
+      }
+    }
+    .line {
+      display: block;
+      background-color: $text;
+      width: 35px;
+      height: 3px;
+      margin: 7px auto;
+      transition: transform $transition, width $transition;
+      &:nth-child(3) {
+        margin-top: -10px;
+      }
+    }
+  }
+
+  @media (max-width: 991px) {
+    .navmenu {
+      background-color: $white;
+      position: absolute;
+      top: 50px;
+      right: 75px;
+      bottom: 100%;
+      overflow: hidden;
+      transition: $transition;
+    }
+
+    .hamburger {
+      display: block;
+    }
+  }
+  @media (max-width: 640px) {
+    .navmenu {
+      left: 0;
+      right: 35px;
+      // margin-top: -15px;
+      // text-align: end;
+    }
+  }
+}
+.sticky {
+  // position: sticky;
+  // top: 0;
+  // background-color: $white;
+  // padding: 15px 0;
+
+  // .logo {
+  //   width: 75px;
+  // }
+  // .navmenu {
+  //   background-color: $white;
+  //   position: absolute;
+  //   top: 25px;
+  //   right: 75px;
+  //   bottom: 100%;
+  //   overflow: hidden;
+  //   transition: $transition;
+  //   &.active {
+  //     bottom: -170%;
+  //     transition: $transition;
+  //   }
+  // }
+
+  // .hamburger {
+  //   display: block;
+  //   align-self: center;
+  // }
+}
+
+/// Hero
+
+.hero {
+  @include flex(center, space-between);
+  .hero-text {
+    flex: 0 0 48%;
+    @media (max-width: 992px) {
+      flex-basis: 100%;
+    }
+    h2 {
+      color: $orange;
+    }
+    p {
+      margin-bottom: 30px;
+    }
+    hr {
+      @include hr($orange);
+    }
+  }
+  .hero-picture {
+    flex: 0 0 39%;
+    position: relative;
+    margin-right: 15px;
+    @media (max-width: 992px) {
+      display: none;
+    }
+    img:nth-child(2) {
+      position: absolute;
+      width: 11.5%;
+      top: 0;
+      right: 0;
+      transform: translate(25%, -10%);
+    }
+    img:nth-child(3) {
+      position: absolute;
+      width: 65.5%;
+      left: 0;
+      bottom: 0;
+      transform: translate(-25.3%, 17%);
+    }
+  }
+}
+
+/// Carousel
+
+.carousel {
+  display: flex;
+  align-items: center;
+  @include responsive(small) {
+    padding: 0;
+  }
+  .arrow {
+    position: relative;
+    z-index: 3;
+    img {
+      width: 50px;
+      cursor: pointer;
+      @include responsive(small) {
+        width: 30px;
+      }
+    }
+    &:hover {
+      img {
+        filter: invert(53%) sepia(56%) saturate(2362%) hue-rotate(357deg)
+          brightness(104%) contrast(97%);
+      }
+    }
+  }
+  .previous {
+    margin-right: 50px;
+    @media (max-width: 992px) {
+      margin-right: 10px;
+    }
+  }
+  .next {
+    transform: rotate(180deg);
+    margin-left: 50px;
+    @media (max-width: 992px) {
+      margin-left: 10px;
+    }
+  }
+  .slider-container {
+    // margin: 75px 0;
+    @media (max-width: 992px) {
+      margin: 0;
+    }
+    // border: 3px solid $orange;
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    overflow: hidden;
+    .slider {
+      display: flex;
+      width: 400%;
+      flex-shrink: 0;
+      transition: 0.7s ease-in-out;
+      .slide {
+        // border: 2px solid $green;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        flex-basis: 25%;
+        // width: 20%;
+        // flex-shrink: 0;
+        // flex: 1;
+      }
+      .slide-3 {
+        img {
+          max-width: 750px;
+        }
+      }
+      .slide-4 {
+        img {
+          max-width: 580px;
+        }
+      }
+    }
+  }
+}
+
+/// Vesti
+
+.news {
+  h3 {
+    color: $orange;
+  }
+  hr {
+    @include hr($orange);
+  }
+  .index-vesti {
+    @include flex(stretch, center);
+    gap: clamp(50px, 5vw, 100px);
+
+    .index-vest {
+      flex: 0 0 40%;
+      position: relative;
+      min-width: 400px;
+      overflow: hidden;
+      @include responsive(large) {
+        min-width: 280px;
+        flex-grow: 1;
+      }
+      @include responsive(medium) {
+        flex-grow: 1;
+        max-width: 90%;
+      }
+      @include responsive(small) {
+        flex-grow: 1;
+        min-width: 300px;
+      }
+      &:hover {
+        img {
+          transform: scale(1.1);
+        }
+      }
+      img {
+        transition: $transition;
+      }
+      .overlay {
+        position: absolute;
+        background: rgba($orange, 0.7);
+        width: 100%;
+        height: 30%;
+        bottom: 0;
+        @include flex(center, center);
+        p {
+          font-size: clamp(1rem, 1.6vw, 1.45rem);
+          font-weight: 700;
+          color: $white;
+          width: 85%;
+          @include responsive(large) {
+            font-size: clamp(0.8rem, 1.6vw, 1.45rem);
+          }
+          a {
+            font-size: clamp(0.8rem, 1.3vw, 1rem);
+            font-weight: 600;
+            color: $text;
+            @include responsive(large) {
+              font-size: clamp(0.7rem, 1.3vw, 1rem);
+            }
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+        .date {
+          position: absolute;
+          bottom: 5px;
+          right: 10px;
+          color: $white;
+          font-weight: 500;
+          @include responsive(large) {
+            font-size: 0.8rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+/// Galerija
+
+.index-galerija {
+  h3 {
+    color: $olive;
+  }
+  hr {
+    @include hr($olive);
+  }
+  .index-slike {
+    @include flex(center, center);
+    gap: clamp(50px, 5vw, 100px);
+
+    .index-slika {
+      flex: 0 0 40%;
+      position: relative;
+      min-width: 400px;
+      overflow: hidden;
+      @include responsive(large) {
+        min-width: 280px;
+      }
+      @include responsive(medium) {
+        flex-grow: 1;
+        max-width: 90%;
+      }
+      @include responsive(small) {
+        flex-grow: 1;
+        min-width: 300px;
+      }
+      &:hover {
+        img {
+          transform: scale(1.1);
+        }
+      }
+      img {
+        transition: $transition;
+      }
+      .overlay {
+        position: absolute;
+        background: rgba($olive, 0.7);
+        width: 100%;
+        height: 30%;
+        bottom: 0;
+        @include flex(center, center);
+        p {
+          font-size: clamp(1rem, 1.6vw, 1.45rem);
+          font-weight: 700;
+          color: $white;
+          width: 85%;
+          @include responsive(large) {
+            font-size: clamp(0.8rem, 1.6vw, 1.45rem);
+          }
+          a {
+            font-size: clamp(0.8rem, 1.3vw, 1rem);
+            font-weight: 600;
+            color: $text;
+            @include responsive(large) {
+              font-size: clamp(0.7rem, 1.3vw, 1rem);
+            }
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+        .date {
+          position: absolute;
+          bottom: 5px;
+          right: 10px;
+          color: $white;
+          font-weight: 500;
+          @include responsive(large) {
+            font-size: 0.8rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+//?-------------------------------------
+//? Projekti
+//?-------------------------------------
+
+/// Iskljuci to covece
+
+.projekti-heading {
+  h3 {
+    color: $orange;
+  }
+  hr {
+    @include hr($orange);
+  }
+}
+
+.projekat {
+  @media (max-width: 767px) {
+    padding-bottom: 0;
+  }
+  h4 {
+    color: $yellow;
+  }
+  p {
+    // width: 95%;
+    @media (max-width: 767px) {
+      // text-align: justify;
+    }
+  }
+  .slika {
+    position: relative;
+    max-width: 70%;
+    margin: min(10vw, 150px) auto;
+    @media (max-width: 767px) {
+      max-width: 100%;
+    }
+    img:nth-child(2) {
+      position: absolute;
+      z-index: -1;
+      width: 25%;
+      top: 0;
+      right: 0;
+      transform: translate(50%, -50%);
+      @media (max-width: 767px) {
+        display: none;
+      }
+    }
+    img:nth-child(3) {
+      position: absolute;
+      z-index: -1;
+      width: 27%;
+      left: 0;
+      bottom: 0;
+      transform: translate(-50%, 50%);
+      @media (max-width: 767px) {
+        display: none;
+      }
+    }
+  }
+}
+
+.p2 {
+  h4 {
+    color: $darkGray;
+  }
+  .slika {
+    max-width: 40%;
+    @media (max-width: 767px) {
+      max-width: 70%;
+    }
+    img:nth-child(2) {
+      width: 40%;
+      transform: translate(50%, -50%);
+    }
+    img:nth-child(3) {
+      width: 60%;
+      transform: translate(-40%, 40%);
+    }
+  }
+}
+.p3 {
+  h4 {
+    color: $green;
+  }
+  .slika {
+    img:nth-child(2) {
+      width: 27%;
+      transform: translate(50%, -50%);
+    }
+    img:nth-child(3) {
+      width: 40%;
+      transform: translate(-35%, 37%);
+    }
+  }
+}
+.p4 {
+  h4 {
+    color: $blue;
+  }
+  a {
+    color: $blue;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  .slika {
+    max-width: 32%;
+    @media (max-width: 767px) {
+      max-width: 50%;
+    }
+    img:nth-child(2) {
+      width: 42%;
+      transform: translate(50%, -50%);
+    }
+    img:nth-child(3) {
+      width: 60%;
+      transform: translate(-50%, 33%);
+    }
+  }
+}
+
+//?-------------------------------------
+//? Vesti
+//?-------------------------------------
+
+.page {
+  @include flex(flex-start, space-between, row);
+  aside {
+    position: relative;
+    flex: 0 0 350px;
+    border: 1px solid $orange;
+    padding: 100px 40px;
+    margin-top: 150px;
+    margin-right: 25px;
+    @media (max-width: 1279px) {
+      flex-basis: 70%;
+      margin: 150px auto 75px auto;
+    }
+    @media (max-width: 767px) {
+      margin: 75px auto;
+      flex-basis: 100%;
+    }
+
+    ul {
+      li:not(:last-child) {
+        margin-bottom: 20px;
+      }
+      a {
+        color: $orange;
+        text-decoration: underline;
+        &:hover {
+          color: darken($orange, 10%);
+        }
+      }
+    }
+    img:nth-of-type(1) {
+      position: absolute;
+      z-index: 2;
+      // background-color: $white;
+      // outline: 10px solid $white;
+      width: 200px;
+      top: 0;
+      left: 0;
+      transform: translate(-50%, -50%);
+    }
+    img:nth-of-type(2) {
+      position: absolute;
+      z-index: 2;
+      // background-color: $white;
+      // outline: 10px solid $white;
+      width: 250px;
+      bottom: 0;
+      right: 0;
+      transform: translate(10%, 50%);
+    }
+    &::after {
+      position: absolute;
+      content: '';
+      z-index: 1;
+      background: $white;
+      width: 160px;
+      height: 160px;
+      top: 0;
+      left: 0;
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+    &::before {
+      position: absolute;
+      content: '';
+      z-index: 1;
+      background: $white;
+      width: 265px;
+      height: 85px;
+      bottom: 0;
+      right: 0;
+      transform: translate(10%, 50%);
+    }
+    @media (max-width: 767px) {
+      img,
+      &::after,
+      &::before {
+        display: none;
+      }
+    }
+  }
+  main {
+    flex: 0 0 60%;
+    @media (max-width: 1279px) {
+      flex-basis: 100%;
+    }
+  }
+}
+
+/// Vesti
+
+.vest {
+  h2 {
+    color: $orange;
+    @media (max-width: 767px) {
+      font-size: 2rem;
+    }
+  }
+  .date {
+    color: $orange;
+    display: block;
+    margin-bottom: 0.5em;
+  }
+  img {
+    margin-bottom: 75px;
+  }
+  p {
+    span {
+      color: $orange;
+    }
+  }
+}
+
+//?-------------------------------------
+//? Galerija
+//?-------------------------------------
+
+.galerija-heading {
+  h3 {
+    color: $olive;
+  }
+  hr {
+    @include hr($olive);
+  }
+}
+.galerija {
+  h4 {
+    color: $olive;
+  }
+  .slike {
+    @include flex(center, center);
+    gap: 50px;
+    img {
+      border: 5px solid $olive;
+      width: clamp(250px, 25vw, 295px);
+      @include responsive(small) {
+        width: 100%;
+      }
+    }
+  }
+}
+
+//?-------------------------------------
+//? Kontakt
+//?-------------------------------------
+.kontakt-stranica {
+  background: $orange;
+
+  nav {
+    .navmenu {
+      @media (max-width: 991px) {
+        background-color: $orange;
+      }
+      li {
+        a {
+          color: $text;
+          &.active-page {
+            color: $white;
+          }
+          &:hover {
+            color: $white;
+          }
+        }
+      }
+    }
+    .hamburger:hover {
+      .line {
+        background-color: $white;
+      }
+    }
+  }
+}
+
+.kontakt-heading {
+  h2 {
+    color: $white;
+    margin-bottom: 0.25em;
+    @media (max-width: 767px) {
+      font-size: 2rem;
+    }
+  }
+  hr {
+    @include hr($white);
+  }
+}
+
+.kontakt {
+  @include flex(flex-start, space-between, row, nowrap);
+  @media (max-width: 992px) {
+    flex-wrap: wrap;
+  }
+  .kontakt-info {
+    flex: 0 0 540px;
+    @media (max-width: 992px) {
+      flex-basis: 100%;
+    }
+    ul {
+      li {
+        @include flex(center, flex-start);
+        @include responsive(small) {
+          @include flex(center, center, column);
+          text-align: center;
+        }
+        &:not(:last-child) {
+          margin-bottom: 15px;
+          @include responsive(small) {
+            margin-bottom: 2.5em;
+          }
+        }
+        img {
+          width: 45px;
+          margin-right: 40px;
+          border-radius: 50px;
+          transition: $transition;
+          @include responsive(small) {
+            margin: 0 0 0.5em 0;
+          }
+        }
+        a {
+          color: $white;
+          // transition: $transition;
+          &:hover {
+            color: $text;
+          }
+        }
+      }
+    }
+  }
+  .kontakt-picture {
+    flex: 0 1 600px;
+    img {
+      margin-top: -75px;
+    }
+    @media (max-width: 992px) {
+      margin: 0 auto;
+      img {
+        margin-top: 75px;
+      }
+    }
+  }
+}
